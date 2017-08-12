@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.convention.result.path" value="/"></constant>
+
+
+	<package name="default" namespace="/" extends="struts-default">
+	
+		<action name="productprop">
+			<result name="success">/product_prop.jsp</result>
+		</action>
+		
+		<action name="login" class="com.cusoft.action.LoginAction">
+			<result name="success">/modal.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="logout" class="com.cusoft.action.LoginAction"
+			method="logout">
+			<result name="success">/loggedout.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+
+		<action name="createprops" class="com.cusoft.action.CreateProduct"
+			method="createProductProperty">
+			<result name="success">/create_product.jsp</result>
+		</action>
+		<action name="addProduct" class="com.cusoft.action.ProductAction">
+			<result name="success">/product_master.jsp</result>
+		</action>
+		<action name="editdesc" class="com.cusoft.action.UpdateProductProperty"
+			method="updateDesc">
+		</action>
+
+		<action name="createproduct" class="com.cusoft.action.AjaxAction">
+			<result name="success">/create_product.jsp</result>
+		</action>
+		
+		<action name="storeproduct" class="com.cusoft.action.CreateProduct">
+			<result name="success">/create_product.jsp</result>
+		</action>
+		<action name="createuom">
+			<result name="success">/uom_master.jsp</result>
+		</action>
+		
+		<action name="adduom" class="com.cusoft.action.UOMAction" method="adduom">
+			<result name="success">/uom_master.jsp</result>
+		</action>
+		
+	</package>
+
+	<!-- START OF JSON PACKAGE -->
+
+
+	<package name="json" namespace="/" extends="json-default">
+		<action name="getJSON" class="com.cusoft.action.ProductAction"
+			method="getDensityData">
+			<param name="noCache">true</param>
+			<param name="excludeNullProperties">true</param>
+			<param name="root">densityjson</param>
+			<result name="success" type="json" />
+		</action>
+		<action name="getProductPropertyData" class="com.cusoft.action.ProductAction"
+			method="getProductPropertyData">
+			<result name="success" type="json">/product_prop.jsp</result>
+		</action>
+
+		<action name="getProductPropData" class="com.cusoft.action.PropertyListDataAction">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
+				<param name="root">data</param>
+			</result>
+		</action>
+		
+		<action name="testselect2" class="com.cusoft.action.CopyOfPropertyListDataAction">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

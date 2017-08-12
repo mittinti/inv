@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.5//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection properties - Driver, URL, user, password -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:XE</property>
+		<property name="hibernate.connection.username">bmmblr</property>
+		<property name="hibernate.connection.password">bmmblr28$</property>
+		<!-- Connection Pool Size -->
+		<property name="hibernate.connection.pool_size">1</property>
+		
+		<!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<!-- Disable the second-level cache -->
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		<!-- Outputs the SQL queries, should be disabled in Production -->
+		<property name="hibernate.show_sql">true</property>
+		
+		<!-- Dialect is required to let Hibernate know the Database Type, MySQL, Oracle etc
+			Hibernate 4 automatically figure out Dialect from Database Connection Metadata -->
+
+		<!-- mapping file for hibernate to look at the bean class annotations --> 
+		<mapping class="com.cusoft.bean.Users"/>
+		<mapping class="com.cusoft.bean.DensityGroup"/>
+		<mapping class="com.cusoft.bean.FaceGroup"/>
+		<mapping class="com.cusoft.bean.MakeGroup"/>
+		<mapping class="com.cusoft.bean.MaterialGroup"/>
+		<mapping class="com.cusoft.bean.SizeGroup"/>
+		<mapping class="com.cusoft.bean.ThicknessGroup"/>
+		<mapping class="com.cusoft.bean.UOM"/>
+		<mapping class="com.cusoft.bean.Product"/>
+		
+	</session-factory>
+</hibernate-configuration>
